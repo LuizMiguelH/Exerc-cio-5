@@ -19,31 +19,31 @@
 
     /*Tema 2 (padrão) */
 
-    --theme2-bg: hsl(222, 26%, 31%);
-    --theme2-keypad-bg: hsl(223, 31%, 20%);
-    --theme2-screen-bg: hsl(224,  36%, 15%);
-    --theme2-key-bg: hsl(30, 25%, 89%);
-    --theme2key-shadow: hsl(28, 16%, 65%);
-    --theme2-action-bg: hsl(225, 21%, 49%);
-    --theme2-action-shadow: hsl(224, 28%, 35%);
-    --theme2-equals-bg: hsl(6, 63%, 50%);
-    --theme2-equals-shadow: hsl(6, 70%, 34%);
-    --theme2-text: hsl(0, 0%, 100%);
-    --theme2-key-text: hsl(221, 14%, 31%);
+    --theme2-bg: hsl(240, 20%, 90%);
+    --theme2-keypad-bg: hsl(240, 10%, 85%);
+    --theme2-screen-bg: hsl(0, 0%, 93%);
+    --theme2-key-bg: hsl(45, 100%, 85%);
+    --theme2key-shadow: hsl(35, 85%, 65%);
+    --theme2-action-bg: hsl(185, 42%, 37%);
+    --theme2-action-shadow: hsl(185, 58%, 25%);
+    --theme2-equals-bg: hsl(25, 98%, 40%);
+    --theme2-equals-shadow: hsl(25, 99%, 27%);
+    --theme2-text: hsl(60, 10%, 20%);
+    --theme2-key-text: hsl(60, 10%, 20%);
     
     /*Tema 3 (padrão) */
 
-    --theme3-bg: hsl(222, 26%, 31%);
-    --theme3-keypad-bg: hsl(223, 31%, 20%);
-    --theme3-screen-bg: hsl(224,  36%, 15%);
-    --theme3-key-bg: hsl(30, 25%, 89%);
-    --theme3-key-shadow: hsl(28, 16%, 65%);
-    --theme3-action-bg: hsl(225, 21%, 49%);
-    --theme3-action-shadow: hsl(224, 28%, 35%);
-    --theme3-equals-bg: hsl(6, 63%, 50%);
-    --theme3-equals-shadow: hsl(6, 70%, 34%);
-    --theme3-text: hsl(0, 0%, 100%);
-    --theme3-key-text: hsl(221, 14%, 31%);
+    --theme3-bg: hsl(268, 75%, 9%);
+    --theme3-keypad-bg: hsl(268, 71%, 12%);
+    --theme3-screen-bg: hsl(268, 71%, 20%);
+    --theme3-key-bg: hsl(281, 89%, 26%);
+    --theme3-key-shadow: hsl(285, 91%, 52%);
+    --theme3-action-bg: hsl(176, 100%, 44%);
+    --theme3-action-shadow: hsl(177, 92%, 70%);
+    --theme3-equals-bg: hsl(52, 100%, 62%);
+    --theme3-equals-shadow: hsl(52, 100%, 42%);
+    --theme3-text: hsl(52, 100%, 90%);
+    --theme3-key-text: hsl(52, 100%, 90%);
 }
 
 body{
@@ -58,36 +58,140 @@ body{
 }
 
 .calculator-container{
-    border: solid;
-    height: 900px;
+    width:100%;
+    max-width: 500px;
+    height: auto;
+    justify-items: center;
+    align-items: center;
+}
+
+.display{
+    width: 100%;
+    height: 100px;
+    background-color: var(--theme1-screen-bg);
+    margin: 15px;
+    border-radius: 10px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: right;
 }
 
 .result{
-
+    width: auto;
+    margin: 10px;
+    font-size: 60px;
 }
 
 .keypad{
-    width: 500px;
+    width: 100;
     height: 570px;
-    padding: 5px;
+    padding: 10px;
     background-color: var(--theme1-keypad-bg);
     justify-content: center;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     border-radius: 10px;
+    gap: 10px;
 }
 
 .key{
-    width: 100px;
+    width: calc((100% - 40px) / 4);
     height: 90px;
-    margin:5px;
+    border: 0;
+    border-bottom: 3px solid var(--theme1-key-shadow);
     border-radius: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+    box-shadow: 0 4px 0 var(--theme1-key-shadow); 
+}
+
+.span-2{
+    width: calc(((100% - 40px) / 4) * 2 + 10px);
+    height: 100px;
 }
 
 .actions{
-    width: 210px;
-    height: 100px;
-    margin:5px;
+    background-color: var(--theme1-action-bg);
+    border-bottom: 3px solid var(--theme1-action-shadow);
+    color: var(--theme1-text);
+    transition: transform 0.1s, box-shadow 0.1s;
+    box-shadow: 0 4px 0 var(--theme1-action-shadow); 
+}
+
+.equals{
+    background-color: var(--theme1-equals-bg);
+    border-bottom: 3px solid var(--theme1-equals-shadow);
     border-radius: 10px;
+    transition: transform 0.1s, box-shadow 0.1s;
+    box-shadow: 0 4px 0 var(--theme1-equals-shadow); 
+}
+
+.header{
+    display: flex;
+    width: 100%;
+    height: 80px;
+    text-align: center;
+    align-items: center;
+}
+
+.theme-switcher{
+    display: flex ;
+    width: 100%;
+    height: 80px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.theme-controls{
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+}
+
+.theme-toggle{
+    width: 60px;
+    height: 20px;
+    background-color: var(--theme1-keypad-bg);
+    border-radius:30px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.theme-numbers{
+    display: flex;
+    width: 60px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toggle-ball{
+    width: 15px;
+    height: 15px;
+    margin: 2px;
+    background-color: var(--theme1-equals-bg);
+    border-radius:25px;
+}
+
+
+/*Animação*/
+.key:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 var(--theme1-key-shadow);
+    filter: brightness(0.85);
+}
+
+.actions:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 var(--theme1-action-shadow);
+    filter: brightness(0.85);
+}
+
+.equals:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 var(--theme1-equals-shadow);
+    filter: brightness(0.85);
 }

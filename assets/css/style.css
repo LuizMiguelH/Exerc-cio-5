@@ -23,7 +23,7 @@
     --theme2-keypad-bg: hsl(240, 10%, 85%);
     --theme2-screen-bg: hsl(0, 0%, 93%);
     --theme2-key-bg: hsl(45, 100%, 85%);
-    --theme2key-shadow: hsl(35, 85%, 65%);
+    --theme2-key-shadow: hsl(35, 85%, 65%);
     --theme2-action-bg: hsl(185, 42%, 37%);
     --theme2-action-shadow: hsl(185, 58%, 25%);
     --theme2-equals-bg: hsl(25, 98%, 40%);
@@ -33,28 +33,26 @@
     
     /*Tema 3 (padrão) */
 
-    --theme3-bg: hsl(268, 75%, 9%);
-    --theme3-keypad-bg: hsl(268, 71%, 12%);
-    --theme3-screen-bg: hsl(268, 71%, 20%);
-    --theme3-key-bg: hsl(281, 89%, 26%);
-    --theme3-key-shadow: hsl(285, 91%, 52%);
-    --theme3-action-bg: hsl(176, 100%, 44%);
-    --theme3-action-shadow: hsl(177, 92%, 70%);
-    --theme3-equals-bg: hsl(52, 100%, 62%);
-    --theme3-equals-shadow: hsl(52, 100%, 42%);
-    --theme3-text: hsl(52, 100%, 90%);
-    --theme3-key-text: hsl(52, 100%, 90%);
+    --theme3-bg: hsl(260, 20%, 20%);
+    --theme3-keypad-bg: hsl(260, 16%, 25%);
+    --theme3-screen-bg: hsl(260, 18%, 30%);
+    --theme3-key-bg: hsl(240, 30%, 90%);
+    --theme3-key-shadow: hsl(240, 15%, 65%);
+    --theme3-action-bg: hsl(200, 40%, 55%);
+    --theme3-action-shadow: hsl(200, 40%, 40%);
+    --theme3-equals-bg: hsl(25, 90%, 55%);
+    --theme3-equals-shadow: hsl(25, 85%, 40%);
+    --theme3-text: hsl(0, 0%, 100%);
+    --theme3-key-text: hsl(260, 10%, 20%);
 }
 
 body{
     font-family: 'League Spartan', sans-serif;
-    background-color: var(--theme1-bg);
-    color: var(--theme1-text);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background-color 0.3s ease;
+    transition: transform 0.5s ease, background-color 0.5s ease;
 }
 
 .calculator-container{
@@ -68,44 +66,44 @@ body{
 .display{
     width: 100%;
     height: 100px;
-    background-color: var(--theme1-screen-bg);
     margin: 15px;
     border-radius: 10px;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: right;
+    transition: transform 0.5s ease, background-color 0.5s ease;
 }
 
 .result{
     width: auto;
     margin: 10px;
     font-size: 60px;
+    transition: transform 0.5s ease, background-color 0.5s ease;
 }
 
 .keypad{
     width: 100;
     height: 570px;
     padding: 10px;
-    background-color: var(--theme1-keypad-bg);
     justify-content: center;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     border-radius: 10px;
     gap: 10px;
+    transition: transform 0.5s ease, background-color 0.5s ease;
 }
 
 .key{
     width: calc((100% - 40px) / 4);
     height: 90px;
     border: 0;
-    border-bottom: 3px solid var(--theme1-key-shadow);
     border-radius: 10px;
     font-size: 30px;
     cursor: pointer;
     transition: transform 0.1s, box-shadow 0.1s;
-    box-shadow: 0 4px 0 var(--theme1-key-shadow); 
+    transition: transform 0.5s ease, background-color 0.5s ease;
 }
 
 .span-2{
@@ -113,20 +111,9 @@ body{
     height: 100px;
 }
 
-.actions{
-    background-color: var(--theme1-action-bg);
-    border-bottom: 3px solid var(--theme1-action-shadow);
-    color: var(--theme1-text);
-    transition: transform 0.1s, box-shadow 0.1s;
-    box-shadow: 0 4px 0 var(--theme1-action-shadow); 
-}
-
 .equals{
-    background-color: var(--theme1-equals-bg);
-    border-bottom: 3px solid var(--theme1-equals-shadow);
     border-radius: 10px;
-    transition: transform 0.1s, box-shadow 0.1s;
-    box-shadow: 0 4px 0 var(--theme1-equals-shadow); 
+    transition: transform 0.5s ease, background-color 0.5s ease;
 }
 
 .header{
@@ -154,11 +141,12 @@ body{
 .theme-toggle{
     width: 60px;
     height: 20px;
-    background-color: var(--theme1-keypad-bg);
     border-radius:30px;
     display: flex;
     align-items: center;
     cursor: pointer;
+    position: relative;
+    transition: transform 0.5s ease, background-color 0.5s ease;
 }
 
 .theme-numbers{
@@ -166,32 +154,209 @@ body{
     width: 60px;
     align-items: center;
     justify-content: space-between;
+    transition: transform 0.5s ease, background-color 0.5s ease;
+
 }
 
 .toggle-ball{
-    width: 15px;
-    height: 15px;
-    margin: 2px;
-    background-color: var(--theme1-equals-bg);
-    border-radius:25px;
+    width: 19px;
+    height: 19px;
+    border-radius:50%;
+    transform: scale(.8);
+    position: absolute;
+    top: 0;
+    transition: transform 0.5s ease, background-color 0.5s ease;
 }
+
+
+
+/*Temas*/
+/* Tema 1 */
+body.theme-1 {
+    background-color: var(--theme1-bg);
+    color: var(--theme1-text);
+}
+
+body.theme-1 .display {
+    background-color: var(--theme1-screen-bg);
+}
+
+body.theme-1 .keypad {
+    background-color: var(--theme1-keypad-bg);
+}
+
+body.theme-1 .key {
+    background-color: var(--theme1-key-bg);
+    box-shadow: 0 4px 0 var(--theme1-key-shadow);
+    color: var(--theme1-key-text);
+    border-bottom: 3px solid var(--theme1-key-shadow)
+}
+
+body.theme-1 .actions {
+    background-color: var(--theme1-action-bg);
+    box-shadow: 0 4px 0 var(--theme1-action-shadow);
+    color: var(--theme1-text);
+    border-bottom: 3px solid var(--theme1-action-shadow)
+}
+
+body.theme-1 .equals {
+    background-color: var(--theme1-equals-bg);
+    box-shadow: 0 4px 0 var(--theme1-equals-shadow);
+    color: var(--theme1-text);
+    border-bottom: 3px solid var(--theme1-equals-shadow)
+}
+body.theme-1 .theme-toggle{
+    background-color: var(--theme1-keypad-bg);
+}
+body.theme-1 .toggle-ball {
+    background-color: var(--theme1-equals-bg);
+}
+
+
+
+/* Tema 2 */
+body.theme-2 {
+    background-color: var(--theme2-bg);
+    color: var(--theme2-text);
+}
+
+body.theme-2 .display {
+    background-color: var(--theme2-screen-bg);
+}
+
+body.theme-2 .keypad {
+    background-color: var(--theme2-keypad-bg);
+}
+
+body.theme-2 .key {
+    background-color: var(--theme2-key-bg);
+    box-shadow: 0 4px 0 var(--theme2-key-shadow);
+    color: var(--theme2-key-text);
+    border-bottom: 3px solid var(--theme2-key-shadow)
+}
+
+body.theme-2 .actions {
+    background-color: var(--theme2-action-bg);
+    box-shadow: 0 4px 0 var(--theme2-action-shadow);
+    color: var(--theme2-text);
+    border-bottom: 3px solid var(--theme2-action-shadow)
+}
+
+body.theme-2 .equals {
+    background-color: var(--theme2-equals-bg);
+    box-shadow: 0 4px 0 var(--theme2-equals-shadow);
+    color: var(--theme2-text);
+    border-bottom: 3px solid var(--theme2-equals-shadow)
+}
+body.theme-2 .theme-toggle{
+    background-color: var(--theme2-keypad-bg);
+}
+body.theme-2 .toggle-ball {
+    left: 21px;
+    background-color: var(--theme2-equals-bg);
+}
+
+
+
+/* Tema 3 */
+body.theme-3 {
+    background-color: var(--theme3-bg);
+    color: var(--theme3-text);
+}
+
+body.theme-3 .display {
+    background-color: var(--theme3-screen-bg);
+}
+
+body.theme-3 .keypad {
+    background-color: var(--theme3-keypad-bg);
+}
+
+body.theme-3 .key {
+    background-color: var(--theme3-key-bg);
+    box-shadow: 0 4px 0 var(--theme3-key-shadow);
+    color: var(--theme3-key-text);
+    border-bottom: 3px solid var(--theme3-key-shadow)
+}
+
+body.theme-3 .actions {
+    background-color: var(--theme3-action-bg);
+    box-shadow: 0 4px 0 var(--theme3-action-shadow);
+    color: var(--theme3-text);
+    border-bottom: 3px solid var(--theme3-action-shadow)
+}
+
+body.theme-3 .equals {
+    background-color: var(--theme3-equals-bg);
+    box-shadow: 0 4px 0 var(--theme3-equals-shadow);
+    color: var(--theme3-text);
+    border-bottom: 3px solid var(--theme3-equals-shadow)
+}
+body.theme-3 .theme-toggle{
+    background-color: var(--theme3-keypad-bg);
+}
+body.theme-3 .toggle-ball {
+    left: 41px;
+    background-color: var(--theme3-equals-bg);
+}
+
+
 
 
 /*Animação*/
-.key:active {
+/* Tema 1 */
+.key,
+.actions,
+.equals {
+    transition: transform 0.1s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+body.theme-1 .key:active {
     transform: translateY(4px);
-    box-shadow: 0 0 0 var(--theme1-key-shadow);
+    box-shadow: 0 1px 0 var(--theme1-key-shadow);
+    filter: brightness(0.85);
+}
+body.theme-1 .actions:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 var(--theme1-action-shadow);
+    filter: brightness(0.85);
+}
+body.theme-1 .equals:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 var(--theme1-equals-shadow);
     filter: brightness(0.85);
 }
 
-.actions:active {
+/* Tema 2 */
+body.theme-2 .key:active {
     transform: translateY(4px);
-    box-shadow: 0 0 0 var(--theme1-action-shadow);
+    box-shadow: 0 1px 0 var(--theme2-key-shadow);
+    filter: brightness(0.85);
+}
+body.theme-2 .actions:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 var(--theme2-action-shadow);
+    filter: brightness(0.85);
+}
+body.theme-2 .equals:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 var(--theme2-equals-shadow);
     filter: brightness(0.85);
 }
 
-.equals:active {
+/* Tema 3 */
+body.theme-3 .key:active {
     transform: translateY(4px);
-    box-shadow: 0 0 0 var(--theme1-equals-shadow);
+    box-shadow: 0 1px 0 var(--theme3-key-shadow);
+    filter: brightness(0.85);
+}
+body.theme-3 .actions:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 var(--theme3-action-shadow);
+    filter: brightness(0.85);
+}
+body.theme-3 .equals:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 var(--theme3-equals-shadow);
     filter: brightness(0.85);
 }

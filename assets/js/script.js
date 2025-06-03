@@ -14,11 +14,12 @@ themeToggle.addEventListener('click', () => {
 
 //funcional
 const display = document.querySelector('.result');
-const number = document.querySelectorAll('.key.number');
-const operator = document.querySelectorAll('.key.operator');
+const number = document.querySelectorAll('.number');
+const operator = document.querySelectorAll('.operator');
 const equals = document.querySelector('.equals');
-const reset = document.querySelector('.actions.span-2');
-const del = document.querySelector('.actions:not(.span-2)');
+const reset = document.querySelector('.span-2');
+const del = document.querySelector('.actions');
+let awwwnn = 0
 
 //números
 number.forEach(button => {
@@ -29,26 +30,37 @@ number.forEach(button => {
         display.textContent = value;
     } else {
         display.textContent += value;
-    }
+    } 
+    awwwnn = 1
+    console.log(awwwnn)
     });
 });
 
 //operadores
 operator.forEach(button => {
     button.addEventListener('click', () => {
+        if(awwwnn == 1){
         const value = button.textContent;
-        display.textContent += value;
+        display.textContent += value; awwwnn = 0
+        } else {
+            display.textContent = display.textContent.slice(0, -1) || '0';
+            const value = button.textContent;
+            display.textContent += value; awwwnn = 0
+        }
+        
+        console.log(awwwnn)
     });
 });
 
 //resultado
 equals.addEventListener('click', () => {
+    if (awwwnn == 0){ display.textContent = display.textContent.slice(0, -1) || '0'; }
     try {
         const result = eval(display.textContent.replace('x', '*'));
         display.textContent = result;
     } catch {
         display.textContent = 'Erro';
-    }
+    } awwwnn = 1;
 });
 
 //resetar

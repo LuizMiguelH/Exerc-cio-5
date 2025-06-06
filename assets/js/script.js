@@ -20,18 +20,34 @@ const equals = document.querySelector('.equals');
 const reset = document.querySelector('.span-2');
 const del = document.querySelector('.actions');
 let awwwnn = 0
+let no = 0
+let ponto = true
+const caracteres = 14;
 
 //números
 number.forEach(button => {
     button.addEventListener('click', () => {
+    if (display.textContent.length >= caracteres) return
+
     const value = button.textContent;
 
-    if (display.textContent === '0') {
+    if (value === '.') {
+        if (!ponto) return;
+        ponto = false;
+    } else if (!['+', '-', '*', '/'].includes(value)) {
+        if (display.textContent.slice(-1).match(/[\+\-\*\/]/)) {
+                ponto = true;
+        }
+    }
+
+    if (display.textContent === '0' && value !== '.') {
         display.textContent = value;
     } else {
         display.textContent += value;
-    } 
+    }
+
     awwwnn = 1
+    no = 0
     console.log(awwwnn)
     });
 });
@@ -39,15 +55,17 @@ number.forEach(button => {
 //operadores
 operator.forEach(button => {
     button.addEventListener('click', () => {
-        if(awwwnn == 1){
+        if (display.textContent.length >= caracteres) return
+        if(awwwnn == 1 && no == 0){
         const value = button.textContent;
         display.textContent += value; awwwnn = 0
         } else {
-            display.textContent = display.textContent.slice(0, -1) || '0';
+            display.textContent = display.textContent.slice(0, -1);
             const value = button.textContent;
             display.textContent += value; awwwnn = 0
         }
-        
+
+        ponto = false;
         console.log(awwwnn)
     });
 });
@@ -70,5 +88,17 @@ reset.addEventListener('click', () => {
 
 //deletar
 del.addEventListener('click', () => {
+    no = 1
     display.textContent = display.textContent.slice(0, -1) || '0';
+    console.log(no)
+
+    const ultimo = display.textContent.slice(-1);
+
+    if (!['+', '-', '*', '/'].includes(ultimo)) {
+        const lugar = display.textContent.split(/[\+\-\*\/]/);
+        const ultimo = lugar[lugar.length - 1];
+        ponto = !ultimo.includes('.');
+    } else {
+        ponto = false;
+    }
 });

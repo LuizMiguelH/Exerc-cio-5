@@ -83,6 +83,7 @@ equals.addEventListener('click', () => {
 
 //resetar
 reset.addEventListener('click', () => {
+    ponto = true;
     display.textContent = '0';
 });
 

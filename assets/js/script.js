@@ -19,11 +19,12 @@ const operator = document.querySelectorAll('.operator');
 const equals = document.querySelector('.equals');
 const reset = document.querySelector('.span-2');
 const del = document.querySelector('.actions');
+const result = document.querySelector('.result');
 let awwwnn = 0
 let no = 0
 let ponto = true
 let pósIgual = true
-const caracteres = 14;
+const caracteres = 43;
 
 //números
 number.forEach(button => {
@@ -36,7 +37,7 @@ number.forEach(button => {
         display.textContent = '0' + value
         display.textContent = display.textContent.slice(0, -1) || '0';
         pósIgual = true;
-        
+
     } else if (value === '.') {
         if (!ponto) return;
         ponto = false;
@@ -45,12 +46,13 @@ number.forEach(button => {
                 ponto = true;
         }
     }
-
+    
     if (display.textContent === '0' && value !== '.' || pósIgual === false) {
         display.textContent = value;
         pósIgual = true;
     } else { 
         display.textContent += value;
+        diminuirTexto();
     }
     awwwnn = 1
     no = 0
@@ -66,15 +68,18 @@ number.forEach(button => {
 operator.forEach(button => {
     button.addEventListener('click', () => {
         if (display.textContent.length >= caracteres) return;
+        pósIgual = true
 
         const ultimo = display.textContent.slice(-1)
         if (ultimo == '+' || ultimo == 'x' || ultimo == '-' || ultimo == '/' || ultimo == '.'){
             display.textContent = display.textContent.slice(0, -1) || '0';
             const value = button.textContent;
             display.textContent += value;
+            diminuirTexto();
         } else {
             const value = button.textContent;
             display.textContent += value;
+            diminuirTexto();
         }
         
         ponto = false;
@@ -89,6 +94,7 @@ equals.addEventListener('click', () => {
     try {
         const result = eval(display.textContent.replace('x', '*'));
         display.textContent = result;
+        diminuirTexto();
     } catch {
         display.textContent = 'Erro';
     } awwwnn = 1;
@@ -100,12 +106,14 @@ equals.addEventListener('click', () => {
 reset.addEventListener('click', () => {
     ponto = true;
     display.textContent = '0';
+    diminuirTexto();
 });
 
 //deletar
 del.addEventListener('click', () => {
     no = 1
     display.textContent = display.textContent.slice(0, -1) || '0';
+    diminuirTexto();
     console.log(no)
 
     const ultimo = display.textContent.slice(-1);
@@ -118,3 +126,16 @@ del.addEventListener('click', () => {
         ponto = false;
     }
 });
+
+//result > display (resolvido)
+function diminuirTexto() {
+    const texto = display.textContent.length;
+
+    if (texto > 28) {
+        display.style.fontSize = '20px';
+    } else if (texto > 14) {
+        display.style.fontSize = '30px';
+    } else {
+        display.style.fontSize = '60px';
+    }
+}

@@ -31,8 +31,13 @@ number.forEach(button => {
     if (display.textContent.length >= caracteres) return
 
     const value = button.textContent;
-
-    if (value === '.') {
+    
+    if (value === '.' && pósIgual === false){
+        display.textContent = '0' + value
+        display.textContent = display.textContent.slice(0, -1) || '0';
+        pósIgual = true;
+        
+    } else if (value === '.') {
         if (!ponto) return;
         ponto = false;
     } else if (!['+', '-', '*', '/'].includes(value)) {
@@ -50,6 +55,8 @@ number.forEach(button => {
     awwwnn = 1
     no = 0
     console.log(awwwnn)
+    
+    console.log(pósIgual)
     });
 });
 
@@ -59,6 +66,7 @@ number.forEach(button => {
 operator.forEach(button => {
     button.addEventListener('click', () => {
         if (display.textContent.length >= caracteres) return;
+
         const ultimo = display.textContent.slice(-1)
         if (ultimo == '+' || ultimo == 'x' || ultimo == '-' || ultimo == '/' || ultimo == '.'){
             display.textContent = display.textContent.slice(0, -1) || '0';

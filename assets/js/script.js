@@ -43,8 +43,8 @@ number.forEach(button => {
 
     if (display.textContent === '0' && value !== '.' || pósIgual === false) {
         display.textContent = value;
-        pósIgual = true
-    } else {
+        pósIgual = true;
+    } else { 
         display.textContent += value;
     }
     awwwnn = 1

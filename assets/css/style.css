@@ -249,10 +249,10 @@ body.theme-2 .equals {
     border-bottom: 3px solid var(--theme2-equals-shadow)
 }
 body.theme-2 .theme-toggle{
+    justify-content: center;
     background-color: var(--theme2-keypad-bg);
 }
 body.theme-2 .toggle-ball {
-    left: 21px;
     background-color: var(--theme2-equals-bg);
 }
 
@@ -293,6 +293,7 @@ body.theme-3 .equals {
     border-bottom: 3px solid var(--theme3-equals-shadow)
 }
 body.theme-3 .theme-toggle{
+    justify-content: flex-end;
     background-color: var(--theme3-keypad-bg);
 }
 body.theme-3 .toggle-ball {

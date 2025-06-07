@@ -22,6 +22,7 @@ const del = document.querySelector('.actions');
 let awwwnn = 0
 let no = 0
 let ponto = true
+let pósIgual = true
 const caracteres = 14;
 
 //números
@@ -40,45 +41,51 @@ number.forEach(button => {
         }
     }
 
-    if (display.textContent === '0' && value !== '.') {
+    if (display.textContent === '0' && value !== '.' || pósIgual === false) {
         display.textContent = value;
+        pósIgual = true
     } else {
         display.textContent += value;
     }
-
     awwwnn = 1
     no = 0
     console.log(awwwnn)
     });
 });
 
+
+
 //operadores
 operator.forEach(button => {
     button.addEventListener('click', () => {
-        if (display.textContent.length >= caracteres) return
-        if(awwwnn == 1 && no == 0){
-        const value = button.textContent;
-        display.textContent += value; awwwnn = 0
-        } else {
-            display.textContent = display.textContent.slice(0, -1);
+        if (display.textContent.length >= caracteres) return;
+        const ultimo = display.textContent.slice(-1)
+        if (ultimo == '+' || ultimo == 'x' || ultimo == '-' || ultimo == '/' || ultimo == '.'){
+            display.textContent = display.textContent.slice(0, -1) || '0';
             const value = button.textContent;
-            display.textContent += value; awwwnn = 0
+            display.textContent += value;
+        } else {
+            const value = button.textContent;
+            display.textContent += value;
         }
-
+        
         ponto = false;
-        console.log(awwwnn)
     });
 });
 
 //resultado
 equals.addEventListener('click', () => {
-    if (awwwnn == 0){ display.textContent = display.textContent.slice(0, -1) || '0'; }
+    const ultimo = display.textContent.slice(-1)
+    if (ultimo == '+' || ultimo == 'x' || ultimo == '-' || ultimo == '/' || ultimo == '.'){ 
+        display.textContent = display.textContent.slice(0, -1) || '0'; }
     try {
         const result = eval(display.textContent.replace('x', '*'));
         display.textContent = result;
     } catch {
         display.textContent = 'Erro';
     } awwwnn = 1;
+    ponto = true
+    pósIgual = false
 });
 
 //resetar

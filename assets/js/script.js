@@ -11,7 +11,6 @@ themeToggle.addEventListener('click', () => {
     if (currentTheme > 3) currentTheme = 1;
     body.className = `theme-${currentTheme}`;
 });
-
 //funcional
 const display = document.querySelector('.result');
 const number = document.querySelectorAll('.number');
@@ -41,8 +40,8 @@ number.forEach(button => {
     } else if (value === '.') {
         if (!ponto) return;
         ponto = false;
-    } else if (!['+', '-', '*', '/'].includes(value)) {
-        if (display.textContent.slice(-1).match(/[\+\-\*\/]/)) {
+    } else if (!['+', '-', 'x', '/'].includes(value)) {
+        if (display.textContent.slice(-1).match(/[\+\-\x\/]/)) {
                 ponto = true;
         }
     }
